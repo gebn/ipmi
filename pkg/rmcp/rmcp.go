@@ -1,3 +1,8 @@
+// Package rmcp implements the subset of the Alert Standard Format
+// Specification v2.0 required for IPMI v2.0.
+//
+// References to sections in the specification use the copy at:
+// https://www.dmtf.org/sites/default/files/standards/documents/DSP0136.pdf
 package rmcp
 
 const (
