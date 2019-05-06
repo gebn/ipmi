@@ -74,15 +74,15 @@ func (p *PresencePong) SupportsIPMI() bool {
 }
 
 // SupportsASFV1 returns whether the Presence Pong message indicates support for
-// ASF, Version 1.0. This seems somewhat redundant, given the request is made
-// using ASF v1.0.
+// ASF v1.0. This seems somewhat redundant, given the request is made using ASF
+// v1.0.
 func (p *PresencePong) SupportsASFV1() bool {
 	return p.Entities&EntityASFV1 != 0
 }
 
 // SupportsSecurityExtensions returns whether the Presence Pong message indicates
-// support for RMCP Security Extensions, specified in ASF v2.0. This only applies
-// to v2.0, and will always return false for v1.x implementations.
+// support for RMCP Security Extensions, specified in ASF v2.0. This will always
+// return false for v1.x implementations.
 func (p *PresencePong) SupportsSecurityExtensions() bool {
 	return p.Interactions&InteractionSecurityExtensions != 0
 }
