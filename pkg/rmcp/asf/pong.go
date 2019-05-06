@@ -59,9 +59,9 @@ func (p *PresencePong) SupportsASFV1() bool {
 	return p.Entities&1 != 0
 }
 
-// SupportsSecurityExtensions() returns whether the Presence Pong message
-// indicates support for RMCP Security Extensions, specified in ASF v2.0. This
-// only applies to v2.0, and will always return false for v1.x implementations.
+// SupportsSecurityExtensions returns whether the Presence Pong message indicates
+// support for RMCP Security Extensions, specified in ASF v2.0. This only applies
+// to v2.0, and will always return false for v1.x implementations.
 func (p *PresencePong) SupportsSecurityExtensions() bool {
 	return p.Interactions&(1<<7) != 0
 }
