@@ -1,0 +1,37 @@
+sudo: false
+language: go  # N.B. Bazel downloads its own Go SDK, so we don't rely on Travis keeping up to date
+env:
+  global:
+    - BAZEL_VERSION=0.25.0
+    - BAZEL_SHA256=b3a0502a7c3dcdf859945aa9b000d40ecee40723e533b6dfc8ee58cd551fbecd
+before_install:
+  - |
+    wget -O install.sh "https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-installer-linux-x86_64.sh"
+    echo "${BAZEL_SHA256}  install.sh" | sha256sum -c
+    chmod +x install.sh
+install:
+  - |
+    ./install.sh --user
+    bazel shutdown  # prevents "WARNING: Running Bazel server needs to be killed, because the startup options are different."
+    rm -f install.sh
+script:
+  - |
+    bazel \
+      --host_jvm_args=-Xmx8000m \
+      --host_jvm_args=-Xms8000m \
+      build \
+      --config=ci \
+      --noshow_progress \
+      --noshow_loading_progress \
+      --local_resources=8500,2,1.0 \
+      //...
+  - |
+    bazel \
+      --host_jvm_args=-Xmx8000m \
+      --host_jvm_args=-Xms8000m \
+      test \
+      --config=ci \
+      --noshow_progress \
+      --noshow_loading_progress \
+      --local_resources=8500,2,1.0 \
+      //...
