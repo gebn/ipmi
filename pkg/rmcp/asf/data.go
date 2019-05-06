@@ -19,12 +19,14 @@ type Data struct {
 	Enterprise uint32
 
 	// Type is the message type, defined by the entity associated with the
-	// enterprise above.
+	// enterprise above. No pressure, but 1 byte is the difference between
+	// sending a ping and telling a machine to do an unconditional power down
+	// (0x80 and 0x12 respectively).
 	Type uint8
 
-	// Tag is the message tag, used to match request-response pairs. The tag of
+	// Tag is the message tag, used to match request/response pairs. The tag of
 	// a response is set to that of the message it is responding to. If a
-	// message is not expecting a response, this is set to 255.
+	// message is not of the request/response type, this is set to 255.
 	Tag uint8
 
 	// 1 byte reserved, set to 0x00.

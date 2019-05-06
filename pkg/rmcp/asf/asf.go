@@ -18,6 +18,12 @@ const (
 	TypePresencePong uint8 = 0x40
 
 	// TypePresencePing is a message type sent to a managed client to solicit a
-	// Presence Pong response.
+	// Presence Pong response. Clients may ignore this is the RMCP version is
+	// unsupported. Sending this message with a sequence number <255 is the
+	// recommended way of finding out whether an implementation sends RMCP ACKs.
+	// (Super Micro does not).
+	//
+	// Systems implementing IPMI must respond to this ping to conform to the
+	// spec, so it is a good, lightweight substitute for an ICMP ping.
 	TypePresencePing uint8 = 0x80
 )
