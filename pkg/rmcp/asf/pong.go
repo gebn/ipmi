@@ -19,6 +19,11 @@ const (
 	// interactions field if the managed system supports RMCP v2.0 security
 	// extensions. See section 3.2.3.
 	InteractionSecurityExtensions uint8 = 1 << 7
+
+	// InteractionDASH ANDs with Presence Pong's supported interactions field
+	// if the managed system supports DMTF DASH.
+	// See https://www.dmtf.org/standards/dash.
+	InteractionDASH uint8 = 1 << 5
 )
 
 // PresencePong defines the structure of a Presence Pong message's payload.
