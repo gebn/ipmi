@@ -84,4 +84,5 @@ func main() {
 
 	log.Printf("Supports IPMI: %v", pong.SupportsIPMI())
 	log.Printf("Supports ASF V1.0: %v", pong.SupportsASFV1())
+	log.Printf("Supports security extensions: %v", pong.SupportsSecurityExtensions())
 }
