@@ -5,7 +5,7 @@ import (
 )
 
 // Packet describes the format of an RMCP packet, which forms a UDP
-// payload. See section 3.2.2.2 of the spec for full details.
+// payload. See section 3.2.2.2.
 type Packet struct {
 
 	// Version identifies the version of the RMCP header.
@@ -30,7 +30,7 @@ type Packet struct {
 }
 
 // IsAck returns true if the RMCP packet is an acknowledgment, or false
-// if it is a "normal" packet.
+// if it is a "normal" packet. See section 3.2.2.1.
 func (p *Packet) IsAck() bool {
 	return p.Class&Ack == Ack
 }

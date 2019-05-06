@@ -5,10 +5,8 @@ import (
 	"fmt"
 )
 
-// Data defines the generic ASF-RMCP message Data block format. See section
-// 3.2.2.3 in
-// https://www.dmtf.org/sites/default/files/standards/documents/DSP0114.pdf for
-// full details.
+// Data defines ASF's generic RMCP message Data block format. See section
+// 3.2.2.3.
 type Data struct {
 
 	// Enterprise is the IANA Enterprise Number associated with the entity that

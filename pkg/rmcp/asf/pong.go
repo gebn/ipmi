@@ -6,6 +6,7 @@ import (
 )
 
 // PresencePong defines the structure of a Presence Pong message's payload.
+// See section 3.2.4.3.
 type PresencePong struct {
 
 	// Enterprise is the IANA Enterprise Number of an entity that has defined
