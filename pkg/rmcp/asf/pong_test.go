@@ -15,6 +15,12 @@ func TestParse(t *testing.T) {
 				Enterprise: 2222,
 				Entities:   0x81,
 			}},
+		{[]byte{1, 2, 3, 4, 0, 0, 0, 0, 1, 1 << 7, 0, 0, 0, 0, 0, 0},
+			&PresencePong{
+				Enterprise:   16909060,
+				Entities:     1,
+				Interactions: 1 << 7,
+			}},
 	}
 	p := &PresencePong{}
 	for _, row := range table {
@@ -66,6 +72,26 @@ func TestSupportsASFV1(t *testing.T) {
 		got := p.SupportsASFV1()
 		if got != row.want {
 			t.Errorf("SupportsASFV1(%#x) = %v, want %v", row.entities, got, row.want)
+		}
+	}
+}
+
+func TestSupportsSecurityExtensions(t *testing.T) {
+	table := []struct {
+		interactions uint8
+		want         bool
+	}{
+		{0, false},
+		{1 << 7, true},
+		{1, false},
+	}
+	for _, row := range table {
+		p := &PresencePong{
+			Interactions: row.interactions,
+		}
+		got := p.SupportsSecurityExtensions()
+		if got != row.want {
+			t.Errorf("SupportsSecurityExtensions(%#x) = %v, want %v", row.interactions, got, row.want)
 		}
 	}
 }
